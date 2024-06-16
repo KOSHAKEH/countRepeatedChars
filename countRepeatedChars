@@ -1,0 +1,21 @@
+int countRepeatedChars(const string& s) {
+    map<char, int> count;
+    for (const auto& c : s) {
+        if (isalnum(c)) { // Проверяем, является ли символ буквенно-цифровым
+            if (count.count(tolower(c))) { // Если символ уже есть в словаре
+                count[tolower(c)]++; // Увеличиваем его значение на 1
+            }
+            else {
+                count[tolower(c)] = 1; // Иначе добавляем новую пару «символ — 1» в словарь
+            }
+        }
+    }
+
+    int result = 0;
+    for (const auto& [key, value] : count) {
+        if (value > 1) { // Если значение больше 1, то символ повторяется
+            result++;
+        }
+    }
+    return result;
+}
